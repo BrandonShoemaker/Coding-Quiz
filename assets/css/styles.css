@@ -65,6 +65,7 @@ header{
     margin-top: 3%;
     border-radius: 1.25vw;
     outline: none;
+    transition: .25s;
 }
 
 .option:focus, .option:hover, .start-button:focus, .start-button:hover{

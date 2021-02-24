@@ -29,17 +29,37 @@ function activateQuiz(event){
     infoPEl.remove();
     questionBuilder();
     answerBuilder(formEl);
+    currentQuestion++;
 }
 
 function quizHandler(event){
     event.preventDefault();
     var formEl = document.querySelector(".option-form");
+    var answerResult = document.createElement("div");
+    var buttonsEl;
+    answerResult.className = "answer-result";
+
     if(event.target.getAttribute("data-correct-answer") === "y"){
-        console.log("Correct");
+        answerResult.textContent = "Correct!";
     }
     else{
-        console.log("Incorrect")
+        answerResult.textContent = "Incorrect!";
     }
+
+    formEl.appendChild(answerResult);
+    setTimeout(() => {
+        answerResult.remove();
+
+        for(var i = 0; i <= questions.length; i++){
+            buttonsEl = document.querySelector(".option[data-id='"+ i +"']");
+            buttonsEl.remove();
+        }
+
+        questionBuilder();
+        answerBuilder(formEl);
+    }, 1500);
+    
+    if(currentQuestion !== questions.length-1) currentQuestion++;
 }
 
 function questionBuilder(){
@@ -54,12 +74,12 @@ function answerBuilder(formEl){
         answerButtonEl.className = "option";
         if(correctAnswers[currentQuestion]-1 === i){
             answerButtonEl.setAttribute("data-correct-answer", "y");
-            answerButtonEl.textContent = answers[currentQuestion][i];
         }
         else{
             answerButtonEl.setAttribute("data-correct-answer", "n");
-            answerButtonEl.textContent = answers[currentQuestion][i];
         }
+        answerButtonEl.setAttribute("data-id", i);
+        answerButtonEl.textContent = answers[currentQuestion][i];
         formEl.appendChild(answerButtonEl);
     }
 }
