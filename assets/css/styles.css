@@ -57,7 +57,7 @@ header{
     margin-top: 3%;
 }
 
-.option, .start-button{
+.button-class{
     font-size: 1.5vw;
     padding: 2% 3%;
     background-color: var(--optionBackgroundColor);
@@ -68,7 +68,7 @@ header{
     transition: .25s;
 }
 
-.option:focus, .option:hover, .start-button:focus, .start-button:hover{
+.button-class:hover{
     background-color: var(--optionBackgroundColorActive);
 }
 
@@ -90,4 +90,16 @@ header{
     font-size: 1.8vw;
     font-style: italic;
     color: #b5b4b4;
+}
+
+.initials{
+    font-size: 1.5vw;
+    padding: 0 .5%;
+    margin-top: 2%;
+}
+
+.input-button{
+    text-align: left;
+    padding: .5% 1%;
+    margin-left: 2%;
 }
