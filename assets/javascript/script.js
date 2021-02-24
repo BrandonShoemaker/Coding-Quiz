@@ -1,7 +1,7 @@
 var startQuizEl = document.querySelector(".start-button");
 startQuizEl.addEventListener("click", activateQuiz);
-var selectedAnswer = document.querySelector(".option");
-selectedAnswer.addEventListener("click", )
+var selectedAnswer = document.querySelector("#answer-catcher");
+selectedAnswer.addEventListener("click", quizHandler);
 var questions = ["1+1", "3+2", "8*2"];
 var answers = [["1", "2", "4", "3"],["5", "1", "3", "6"],["19", "29", "8", "16"]];
 var correctAnswers = [2, 1, 4];
@@ -18,6 +18,8 @@ setInterval(() => {
 }, 1000);
 
 function activateQuiz(event){
+    event.stopPropagation();
+    event.preventDefault();
     active = true;
     var formEl = document.querySelector(".option-form");
     var infoPEl = document.querySelector(".info");
@@ -32,7 +34,12 @@ function activateQuiz(event){
 function quizHandler(event){
     event.preventDefault();
     var formEl = document.querySelector(".option-form");
-    
+    if(event.target.getAttribute("data-correct-answer") === "y"){
+        console.log("Correct");
+    }
+    else{
+        console.log("Incorrect")
+    }
 }
 
 function questionBuilder(){
