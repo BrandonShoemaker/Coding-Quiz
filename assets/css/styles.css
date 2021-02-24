@@ -6,8 +6,13 @@
 
 :root{
     --optionBackgroundColor: rgba(76, 1, 95, 0.719);
+    --optionBackgroundColorActive: rgba(166, 0, 207, 0.719);
     --optionTextColor: rgb(231, 231, 231);
     --questionTextColor: rgb(26, 25, 25);
+}
+
+.text-centered{
+    text-align: center;
 }
 
 body{
@@ -37,24 +42,51 @@ header{
 
 .quiz-container{
     width: 50%;
-    height: 80%;
     margin: 5% 25%;
     padding: 3%;
 }
 
 .quiz-container > h2{
     font-size: 2.5vw;
+    color: var(--questionTextColor);
+}
+
+.info{
+    color: grey;
+    font-size: 1vw;
+    margin-top: 3%;
 }
 
 .option, .start-button{
     font-size: 1.5vw;
-    padding: 2%;
+    padding: 2% 3%;
     background-color: var(--optionBackgroundColor);
     color: var(--optionTextColor);
     margin-top: 3%;
     border-radius: 1.25vw;
+    outline: none;
+}
+
+.option:focus, .option:hover, .start-button:focus, .start-button:hover{
+    background-color: var(--optionBackgroundColorActive);
+}
+
+.option{
+    width: 47%;
+    text-align: left;
+    display: block;
 }
 
 .start-button{
-    margin: 0 auto;
+    margin: 3% auto 0 auto;
+}
+
+.answer-result{
+    margin-top: 6%;
+    padding-left: 3%;
+    padding-top: 1%;
+    border-top: 3px solid #b5b4b4;
+    font-size: 1.8vw;
+    font-style: italic;
+    color: #b5b4b4;
 }
