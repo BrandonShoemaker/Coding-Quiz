@@ -8,12 +8,12 @@ var correctAnswers = [2, 1, 4];
 var currentQuestion = 0;
 var active = false;
 var scoreTimer = document.querySelector(".score");
-var timer = 59;
+var score = 59;
 
-setInterval(() => {
-    if(timer >= 0 && active === true){
-        scoreTimer.textContent = "Time: " + timer;
-        timer--;
+var scoreKeeper = setInterval(() => {
+    if(score >= 0 && active){
+        scoreTimer.textContent = "Time: " + score;
+        score--;
     }
 }, 1000);
 
@@ -36,7 +36,6 @@ function quizHandler(event){
     event.preventDefault();
     var formEl = document.querySelector(".option-form");
     var answerResult = document.createElement("div");
-    var buttonsEl;
     answerResult.className = "answer-result";
 
     if(event.target.getAttribute("data-correct-answer") === "y"){
@@ -49,17 +48,17 @@ function quizHandler(event){
     formEl.appendChild(answerResult);
     setTimeout(() => {
         answerResult.remove();
-
-        for(var i = 0; i <= questions.length; i++){
-            buttonsEl = document.querySelector(".option[data-id='"+ i +"']");
-            buttonsEl.remove();
-        }
-
+        answerDestroyer();
         questionBuilder();
         answerBuilder(formEl);
     }, 1500);
-    
+
     if(currentQuestion !== questions.length-1) currentQuestion++;
+    else{
+        answerDestroyer();
+        clearInterval(scoreKeeper);
+        
+    }
 }
 
 function questionBuilder(){
@@ -81,5 +80,13 @@ function answerBuilder(formEl){
         answerButtonEl.setAttribute("data-id", i);
         answerButtonEl.textContent = answers[currentQuestion][i];
         formEl.appendChild(answerButtonEl);
+    }
+}
+
+function answerDestroyer(){
+    var buttonsEl;
+    for(var i = 0; i <= questions.length; i++){
+        buttonsEl = document.querySelector(".option[data-id='"+ i +"']");
+        buttonsEl.remove();
     }
 }
