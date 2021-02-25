@@ -110,13 +110,22 @@ header{
 }
 
 .highscore1{
-    background-color: rgb(213, 141, 241);
+    background-color: rgb(177, 135, 197);
 }
 
 .highscore2{
-    background-color: rgb(230, 105, 230);
+    background-color: rgb(195, 153, 212);
 }
 
 #input-catcher{
     margin-top: 2%;
+}
+
+.go-back-button, .clear-score-button{
+    width: 25%;
+    font-size: 1.25vw;
+}
+
+.clear-score-button{
+    margin-left: 5%;
 }
