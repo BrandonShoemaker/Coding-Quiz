@@ -103,3 +103,20 @@ header{
     padding: .5% 1%;
     margin-left: 2%;
 }
+
+.highscore1, .highscore2{
+    padding: 1%;
+    font-size: 1vw;
+}
+
+.highscore1{
+    background-color: rgb(213, 141, 241);
+}
+
+.highscore2{
+    background-color: rgb(230, 105, 230);
+}
+
+#input-catcher{
+    margin-top: 2%;
+}

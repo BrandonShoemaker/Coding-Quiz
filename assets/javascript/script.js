@@ -97,7 +97,6 @@ function answerDestroyer(){
 }
 
 function buildInitials(formEl){
-    localStorage.setItem("")
     var questionH2El = document.querySelector("#question");
     questionH2El.textContent = "Quiz Completed!";
 
@@ -131,21 +130,47 @@ function buildInitials(formEl){
 }
 
 function writeInitials(event){
+    if(event.target.matches(".initials")) return;
+    else if(event.target.matches("#input-catcher")) return;
     event.preventDefault();
+    var highScoreEntry
     var highScore = {
-        intitial: document.querySelector(".initials").value,
+        initial: document.querySelector(".initials").value,
         score: currentScore
     };
     highScores.push(highScore);
 
-    setHighScore();
+    highScore = {
+        initial: "ff",
+        score: 40
+    };
+    highScores.push(highScore);
 
-    document.querySelector(".button").remove();
+    highScore = {
+        initial: "ib",
+        score: 10
+    };
+    highScores.push(highScore);
+
+    setHighScore();
+    getHighScore();
+    document.querySelector(".input-button").remove();
     document.querySelector(".info").remove();
     document.querySelector(".initials").remove();
     var highScoreEl = document.querySelector("#input-catcher");
     var question = document.querySelector("#question");
-    question.textContent = "HighScores";
+    question.textContent = "HighScores:";
+
+    highScoreSorter();
+    for(var i = 0; i < highScores.length; i++){
+        highScoreEntry = document.createElement("p");
+
+        if(i%2 === 0) highScoreEntry.className = "highscore1";
+        else highScoreEntry.className = "highscore2";
+
+        highScoreEntry.textContent = (i+1) + ". " + highScores[i].initial + " - " + highScores[i].score; 
+        highScoreEl.appendChild(highScoreEntry);  
+    }
 }
 
 function setHighScore(){
@@ -162,5 +187,27 @@ function getHighScore(){
 }
 
 function clearHighScore(){
+    getHighScore();
+    highScores = [];
+    setHighScore();
+
+}
+
+function highScoreSorter(){
+    var current;
+    debugger;
+    for(var i = 0; i < highScores.length; i++){
+        current = highScores[i];
+        for(var j = i+1; j < highScores.length; j++){
+            if(current.score < highScores[j].score){
+                var tempName = highScores[j].initial;
+                var tempScore = highScores[j].score;
+                highScores[j].initial = current.initial;
+                highScores[j].score = current.score;
+                current.initial = tempName;
+                current.score = tempScore;
+            }
+        }
+    }
 
 }
