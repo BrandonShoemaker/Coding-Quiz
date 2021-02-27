@@ -7,11 +7,11 @@ scoreboard.addEventListener("click", prepareForScoreboard);
 // beginning globals, global for sake of reduced clutter and accessibility
 var initialSubmit;
 // array of questions
-var questions = ["1+1", "3+2", "8*2"];
+var questions = ["1+1", "3+2", "8*2", "2+2", "1*3"];
 // array of answers
-var answers = [["1", "2", "4", "3"],["5", "1", "3", "6"],["19", "29", "8", "16"]];
+var answers = [["1", "2", "4", "3"],["5", "1", "3", "6"],["19", "29", "8", "16"], ["3", "6", "7", "4"], ["1", "4", "3", "7"]];
 // array of correct answer indexes
-var correctAnswers = [1, 0, 3];
+var correctAnswers = [1, 0, 3, 3, 2];
 // keeps track of what question youre on after each answer
 var currentQuestion = 0;
 // tells timer to start when start quiz button pressed
@@ -99,7 +99,7 @@ function quizHandler(event){
             // after 1.5 seconds remove the message
             answerResult.remove();
             // if current question is within the number of questions
-            if(currentQuestion <= questions.length-1){
+            if(currentQuestion < questions.length){
                 // kills answers
                 answerDestroyer();
                 // rewrites question
@@ -113,6 +113,7 @@ function quizHandler(event){
             }
             // if all questions exhausted
             else{
+                currentQuestion--;
                 // kill answers
                 answerDestroyer();
                 // stop timer
@@ -161,7 +162,7 @@ function answerBuilder(formEl){
 function answerDestroyer(){
     var buttonsEl;
     // kills all answers based on their id's
-    for(var i = 0; i <= questions.length; i++){
+    for(var i = 0; i < answers[currentQuestion].length; i++){
         buttonsEl = document.querySelector(".option[data-id='"+ i +"']");
         buttonsEl.remove();
     }
@@ -213,6 +214,10 @@ function buildInitials(formEl){
 function writeInitials(event){
     // if not desired button do nothing
     if(event.target.matches(".initials")) return;
+    if(!document.querySelector(".initials").value || document.querySelector(".initials").value.length < 2){
+        window.alert("You must enter at least 2 digits for your initials!")
+        return;
+    }
     else if(event.target.matches("#input-catcher")) return;
     event.preventDefault();
     // creates object for scores
