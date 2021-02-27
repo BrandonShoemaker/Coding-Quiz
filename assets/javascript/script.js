@@ -1,5 +1,7 @@
 var selectedAnswer = document.querySelector("#answer-catcher");
 selectedAnswer.addEventListener("click", quizHandler);
+var scoreboard = document.querySelector(".score-wrapper");
+scoreboard.addEventListener("click", prepareForScoreboard);
 var initialSubmit;
 var questions = ["1+1", "3+2", "8*2"];
 var answers = [["1", "2", "4", "3"],["5", "1", "3", "6"],["19", "29", "8", "16"]];
@@ -141,15 +143,45 @@ function writeInitials(event){
     highScores.push(highScore);
 
     setHighScore();
+    removeInitials();
+}
+
+function prepareForScoreboard(event){
+    if(!event.target.matches(".scoreboard")) return;
+    else if(event.target.matches(".scoreboard")){
+        if(document.querySelector("#input-catcher") && document.querySelector(".info")) return;
+        else if(document.querySelector("#input-catcher") && !document.querySelector(".info")) return;
+
+        var formEl = document.querySelector(".option-form");
+        var createInputCatcher = document.createElement("div");
+        createInputCatcher.id = "input-catcher";
+        formEl.appendChild(createInputCatcher);
+
+        if(document.querySelector(".start-button")){
+            document.querySelector(".quiz-container").className = "quiz-container";
+            document.querySelector(".start-button").remove();
+            document.querySelector(".info").remove();
+            clearInterval(scoreKeeper);
+            buildScoreboard();
+        }
+        else{
+            answerDestroyer();
+            clearInterval(scoreKeeper);
+            buildScoreboard();
+        }
+    }
+}
+
+function removeInitials(){
+    document.querySelector(".input-button").remove();
+    document.querySelector(".info").remove();
+    document.querySelector(".initials").remove();
     buildScoreboard();
 }
 
 function buildScoreboard(){
     var highScoreEntry;
     getHighScore();
-    document.querySelector(".input-button").remove();
-    document.querySelector(".info").remove();
-    document.querySelector(".initials").remove();
 
     var highScoreEl = document.querySelector("#input-catcher");
     highScoreEl.removeEventListener("click", writeInitials);

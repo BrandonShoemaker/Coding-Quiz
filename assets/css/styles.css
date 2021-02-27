@@ -32,6 +32,8 @@ header{
 
 .scoreboard{
     color: rgb(162, 0, 202);
+    background-color: white;
+    font-size: 2vw;
 }
 
 .score{
