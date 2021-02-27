@@ -1,27 +1,41 @@
+// selects and adds event listeners for both main quiz wrapper and scoreboard shortcut wrapper
 var selectedAnswer = document.querySelector("#answer-catcher");
 selectedAnswer.addEventListener("click", quizHandler);
 var scoreboard = document.querySelector(".score-wrapper");
 scoreboard.addEventListener("click", prepareForScoreboard);
-var initialSubmit;
-var questions = ["1+1", "3+2", "8*2"];
-var answers = [["1", "2", "4", "3"],["5", "1", "3", "6"],["19", "29", "8", "16"]];
-var correctAnswers = [2, 1, 4];
-var currentQuestion = 0;
-var active = false;
-var scoreTimer = document.querySelector(".score");
-var currentScore = 59;
-var highScores = [];
 
+// beginning globals, global for sake of reduced clutter and accessibility
+var initialSubmit;
+// array of questions
+var questions = ["1+1", "3+2", "8*2"];
+// array of answers
+var answers = [["1", "2", "4", "3"],["5", "1", "3", "6"],["19", "29", "8", "16"]];
+// array of correct answer indexes
+var correctAnswers = [1, 0, 3];
+// keeps track of what question youre on after each answer
+var currentQuestion = 0;
+// tells timer to start when start quiz button pressed
+var active = false;
+// selects element that displays leftover time
+var scoreTimer = document.querySelector(".score");
+// time/score
+var currentScore = 59;
+// keeps track of all highscores
+var highScores = [];
+// timer
 var scoreKeeper = setInterval(() => {
-    if(currentScore >= 0 && active){
+    // if the quiz has started and the time isn't zero, print the new time then decrement score
+    if(active){
         scoreTimer.textContent = "Time: " + currentScore;
-        currentScore--;
-    }
-    if(currentScore === 0){
-        var formEl = document.querySelector(".option-form");
-        answerDestroyer();
-        clearInterval(scoreKeeper);
-        buildInitials(formEl);
+        if(currentScore > 0){
+            currentScore--;
+        }
+        else if(currentScore === 0){
+            var formEl = document.querySelector(".option-form");
+            answerDestroyer();
+            clearInterval(scoreKeeper);
+            buildInitials(formEl);
+        }
     }
 }, 1000);
 
@@ -84,7 +98,7 @@ function answerBuilder(formEl){
     for(var i = 0; i < answers[currentQuestion].length; i++){
         answerButtonEl = document.createElement("button");
         answerButtonEl.className = "option button-class";
-        if(correctAnswers[currentQuestion]-1 === i){
+        if(correctAnswers[currentQuestion] === i){
             answerButtonEl.setAttribute("data-correct-answer", "y");
         }
         else{
