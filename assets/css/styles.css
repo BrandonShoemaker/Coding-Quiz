@@ -1,9 +1,11 @@
+/* base rules for page */
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* color variables */
 :root{
     --optionBackgroundColor: rgba(76, 1, 95, 0.719);
     --optionBackgroundColorActive: rgba(166, 0, 207, 0.719);
@@ -11,18 +13,22 @@
     --questionTextColor: rgb(26, 25, 25);
 }
 
+/* general class to center text */
 .text-centered{
     text-align: center;
 }
 
+/* base body rules, page font-fam declared */
 body{
     font-family: monospace;
 }
 
+/* header base rules, spacing added */
 header{
     margin: 2vw;
 }
 
+/* content-wrapper in header, created flex container and declared sizing with spacing */
 .score-wrapper{
     display: flex;
     font-size: 1vw;
@@ -30,35 +36,49 @@ header{
     justify-content: space-between;
 }
 
+/* direct link to scoreboard, text and background color added, sizes, removes button outline and border, adds transition for effect */
 .scoreboard{
-    color: rgb(162, 0, 202);
+    color: var(--optionBackgroundColor);
     background-color: white;
     font-size: 2vw;
+    outline: none;
+    border: none;
+    transition: .25s;
 }
 
+/* effect to indicate interactibility, text color change */
+.scoreboard:hover{
+    color: var(--optionBackgroundColorActive);
+}
+
+/* determines font color and sizing and bolds */
 .score{
     font-size: 1.5vw;
     font-weight: bold;
     color: var(--questionTextColor);
 }
 
+/* Main wrapper for quiz content, defines width and spacing */
 .quiz-container{
     width: 50%;
     margin: 5% auto;
     padding: 3%;
 }
 
+/* targets header in wrapper, font sizing and color */
 .quiz-container > h2{
     font-size: 2.5vw;
     color: var(--questionTextColor);
 }
 
+/* every p element except scoreboard section, text sizing and color, spacing */
 .info{
     color: grey;
     font-size: 1vw;
     margin-top: 3%;
 }
 
+/* main rules for every button, font sizing and color, background color, spacing, removes outline and borders, and effect transition time */
 .button-class{
     font-size: 1.5vw;
     padding: 2% 3%;
@@ -67,23 +87,28 @@ header{
     margin-top: 3%;
     border-radius: 1.25vw;
     outline: none;
+    border: none;
     transition: .25s;
 }
 
+/* all button hovers, background color */
 .button-class:hover{
     background-color: var(--optionBackgroundColorActive);
 }
 
+/* every answer button, width, re-aligns text, forces block display to promote readability */
 .option{
     width: 47%;
     text-align: left;
     display: block;
 }
 
+/* button to start quiz, spaces */
 .start-button{
     margin: 3% auto 0 auto;
 }
 
+/* feedback on answer selection, spaces, border on top for seperation, font sizing and color and italicized */
 .answer-result{
     margin-top: 6%;
     padding-left: 3%;
@@ -94,44 +119,52 @@ header{
     color: #b5b4b4;
 }
 
+/* input for writing initials, font sizing, spacing */
 .initials{
     font-size: 1.5vw;
     padding: 0 .5%;
     margin-top: 2%;
 }
-
+/* button to submit initials, realigns text left, spacing */
 .input-button{
     text-align: left;
     padding: .5% 1%;
     margin-left: 2%;
 }
 
+/* for alternating scoreboard entry colors, spacing */
 .highscore1, .highscore2{
     padding: 1%;
     font-size: 1vw;
 }
 
+/* color 1 */
 .highscore1{
     background-color: rgb(177, 135, 197);
 }
 
+/* color 2 */
 .highscore2{
     background-color: rgb(195, 153, 212);
 }
 
+/* wrapper for inital input and scoreboard, spacing */
 #input-catcher{
     margin-top: 2%;
 }
 
+/* button to restart main page or clear scores, sizes */
 .go-back-button, .clear-score-button{
     width: 25%;
     font-size: 1.25vw;
 }
 
+/* extra spacing */
 .clear-score-button{
     margin-left: 5%;
 }
 
+/* in short resize all fonts, and resizes width of 2 buttons and 1 wrapper */
 @media screen and (max-width: 1080px){
     .scoreboard{
         font-size: 6vw;
@@ -167,6 +200,7 @@ header{
 
     .go-back-button, .clear-score-button{
         font-size: 5vw;
+        width: 47%;
     }
 
     .highscore1, .highscore2{

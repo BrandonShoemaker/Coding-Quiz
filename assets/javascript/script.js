@@ -19,10 +19,9 @@ var scoreKeeper = setInterval(() => {
     }
     if(currentScore === 0){
         var formEl = document.querySelector(".option-form");
-        var createInputCatcher = document.createElement("div");
-        createInputCatcher.id = "input-catcher";
-        formEl.appendChild(createInputCatcher);
-        buildScoreboard();
+        answerDestroyer();
+        clearInterval(scoreKeeper);
+        buildInitials(formEl);
     }
 }, 1000);
 
@@ -123,7 +122,7 @@ function buildInitials(formEl){
     var gameComleteInfoEl = document.createElement("p");
     gameComleteInfoEl.className = "info";
     gameComleteInfoEl.style.color = "var(--questionTextColor)";
-    currentScore += 1;
+    if(currentScore != 0) currentScore += 1;
     gameComleteInfoEl.innerHTML = "Your Score: "+ currentScore +"<br>You've Finished the quiz! Please enter your initials below to save your score: ";
 
     var inputButtonEl = document.createElement("button");
