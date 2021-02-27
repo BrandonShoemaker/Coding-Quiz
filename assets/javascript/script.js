@@ -17,6 +17,13 @@ var scoreKeeper = setInterval(() => {
         scoreTimer.textContent = "Time: " + currentScore;
         currentScore--;
     }
+    if(currentScore === 0){
+        var formEl = document.querySelector(".option-form");
+        var createInputCatcher = document.createElement("div");
+        createInputCatcher.id = "input-catcher";
+        formEl.appendChild(createInputCatcher);
+        buildScoreboard();
+    }
 }, 1000);
 
 function quizHandler(event){
@@ -44,7 +51,8 @@ function quizHandler(event){
         }
         else{
             answerResult.textContent = "Incorrect!";
-            currentScore -= 10;
+            if((currentScore - 10) < 0) currentScore = 0;
+            else currentScore -= 10;
         }
 
         formEl.appendChild(answerResult);
@@ -114,7 +122,6 @@ function buildInitials(formEl){
 
     var gameComleteInfoEl = document.createElement("p");
     gameComleteInfoEl.className = "info";
-    gameComleteInfoEl.style.fontSize = "1.5vw";
     gameComleteInfoEl.style.color = "var(--questionTextColor)";
     currentScore += 1;
     gameComleteInfoEl.innerHTML = "Your Score: "+ currentScore +"<br>You've Finished the quiz! Please enter your initials below to save your score: ";

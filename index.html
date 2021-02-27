@@ -9,22 +9,27 @@
 </head>
 <body>
     <header>
+        <!-- contains timer and view scoreboard shorcut -->
         <div class="score-wrapper">
             <div class="scoreboard">View Scores</div>
             <p class="score">Time: 60</p>
         </div>
     </header>
     <main>
+        <!-- main section containing question, information and answers -->
         <div class="quiz-container text-centered">
             <h2 id="question">Coding Challenge Quiz</h2>
             <p class="info">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum iure cupiditate distinctio sunt deleniti aperiam corrupti officiis atque quisquam quas quia libero labore dolore maxime itaque, assumenda non ad! Eum!</p>
+            <!-- first input catcher, replaced by another eventually nested in the form element to avoid too much listener adding/removal -->
             <div id="answer-catcher">
+                <!-- form that houses answers and inputs -->
                 <form class="option-form">
                     <button class="start-button button-class" type="button">Start Quiz!</button>
                 </form>
             </div>
         </div>
     </main>
+    <!-- no need for footer, but next is the imported script -->
     <script src="./assets/javascript/script.js"></script>
 </body>
 </html>

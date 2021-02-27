@@ -44,7 +44,7 @@ header{
 
 .quiz-container{
     width: 50%;
-    margin: 5% 25%;
+    margin: 5% auto;
     padding: 3%;
 }
 
@@ -130,4 +130,46 @@ header{
 
 .clear-score-button{
     margin-left: 5%;
+}
+
+@media screen and (max-width: 1080px){
+    .scoreboard{
+        font-size: 6vw;
+    }
+
+    .score{
+        font-size: 6.5vw;
+    }
+
+    .quiz-container{
+        width: 80%;
+    }
+
+    .quiz-container > h2{
+        font-size: 8.5vw;
+    }
+
+    .info{
+        font-size: 5vw;
+    }
+    
+    .button-class{
+        font-size: 6.5vw;
+    }
+
+    .answer-result{
+        font-size: 7vw;
+    }
+
+    .initials{
+        font-size: 5.6vw;
+    }
+
+    .go-back-button, .clear-score-button{
+        font-size: 5vw;
+    }
+
+    .highscore1, .highscore2{
+        font-size: 4.5vw;
+    }
 }
