@@ -29,11 +29,11 @@ https://brandonshoemaker.github.io/Coding-Quiz/
 
 ## Screenshots
 
-![start screen](./assets.images/screenshots/Capture.JPG)
-![question](./assets.images/screenshots/Capture2.JPG)
-![intials](./assets.images/screenshots/Capture3.JPG)
-![bad initials](./assets.images/screenshots/Capture4.JPG)
-![scoreboard](./assets.images/screenshots/Capture5.JPG)
+![start screen](./assets./images/screenshots/Capture.JPG)
+![question](./assets./images/screenshots/Capture2.JPG)
+![intials](./assets./images/screenshots/Capture3.JPG)
+![bad initials](./assets./images/screenshots/Capture4.JPG)
+![scoreboard](./assets./images/screenshots/Capture5.JPG)
 
 ## Contributors
 Brandon Shoemaker
