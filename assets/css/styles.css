@@ -176,6 +176,7 @@ header{
 
     .quiz-container{
         width: 80%;
+        margin: 13% auto;
     }
 
     .quiz-container > h2{
